@@ -1,0 +1,18 @@
+require_relative '../automated_init'
+
+# context "Get entity from store" do
+#   stream_name = Postgres::Controls::Write.write_batch
+
+#   id = EventStore::Messaging::StreamName.get_id stream_name
+#   category_name = EventStore::Messaging::StreamName.get_category stream_name
+
+#   store = EventStore::EntityStore::Controls::Store.example
+
+#   store.category_name = category_name
+
+#   entity = store.get id
+
+#   test "Entity is returned" do
+#     assert entity == EventStore::EntityStore::Controls::Entity.example
+#   end
+# end
