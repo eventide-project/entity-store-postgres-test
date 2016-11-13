@@ -1,7 +1,7 @@
 module EntityStore
   module Postgres
     module Controls
-      EventData = EntityStore::Controls::EventData
+      StreamName = EntityStore::Controls::StreamName
     end
   end
 end
