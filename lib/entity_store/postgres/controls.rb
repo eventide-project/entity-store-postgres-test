@@ -7,6 +7,4 @@ require 'entity_store/postgres/controls/entity'
 require 'entity_store/postgres/controls/projection'
 require 'entity_store/postgres/controls/snapshot'
 require 'entity_store/postgres/controls/write'
-
-puts Rainbow("WARNING: EntityStore control not loaded").bright.white.bg(:red)
-# require 'entity_store/postgres/controls/entity_store'
+require 'entity_store/postgres/controls/entity_store'
