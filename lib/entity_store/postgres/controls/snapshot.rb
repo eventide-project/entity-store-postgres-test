@@ -2,7 +2,7 @@ module EntityStore
   module Postgres
     module Controls
       module Snapshot
-        Example = EntityCache::Controls::Storage::Persistent::Example
+        Example = EntityStore::Controls::Snapshot::Example
       end
     end
   end

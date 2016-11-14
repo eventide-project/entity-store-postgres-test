@@ -1,7 +1,7 @@
-module EventStore
-  module EntityStore
+module EntityStore
+  module Postgres
     module Controls
-      module Store
+      module EntityStore
         def self.example(category: nil, entity_class: nil, projection_class: nil, snapshot_class: nil)
           if category.nil? && entity_class.nil? && projection_class.nil? && snapshot_class.nil?
             store_class = Example

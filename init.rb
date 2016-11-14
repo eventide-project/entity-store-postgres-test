@@ -7,4 +7,4 @@ unless libraries_dir.nil?
   $LOAD_PATH.unshift libraries_dir unless $LOAD_PATH.include?(libraries_dir)
 end
 
-require 'entity_store'
+require 'entity_store/postgres'
