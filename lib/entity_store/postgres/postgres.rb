@@ -27,41 +27,20 @@ module EntityStore
         extend EntityMacro
         extend ProjectionMacro
         extend SnapshotMacro
-
-
-        ## session should not be a dependency. it's a build arg. reader is the dependency.
-        # dependency :session, EventStore::Client::HTTP::Session
-        # dependency :reader, EventSource::Read
-        # no, it needs to be session. reader must be new per get
-        # session needs to be abstract, not just postgres session
       end
     end
 
     module Build
-      def build(session: nil)
+      def build(snapshot_interval: nil, session: nil)
         instance = new
         instance.session = session
-
-        ## write behind delay => snapshot_interval
-        ## doesn't come from settings
-        # settings = Settings.instance
-        # write_behind_delay = settings.get :write_behind_delay
 
         EntityCache.configure(
           instance,
           entity_class,
           persistent_store: snapshot_class,
-          ## write_behind_delay: write_behind_delay,
-          attr_name: :cache
+          persist_interval: snapshot_interval
         )
-
-        # Note: read configure
-        # configure(receiver, stream_name, attr_name: nil, position: nil, batch_size: nil, precedence: nil, partition: nil, delay_milliseconds: nil, timeout_milliseconds: nil, cycle: nil, session: nil)
-        # need partition
-        # no, reader has stream name. need to vary stream name per get.
-        # need to have new reader per get
-        # but need to pass session in
-        # EventSource::Postgres::Read.configure(instance, session: session)
 
         instance
       end
@@ -103,24 +82,18 @@ module EntityStore
       end
     end
 
-    ## projection_class.(entity, stream_name, starting_position: starting_position, session: session)
     def refresh(entity, id, current_position)
       logger.trace { "Refreshing (ID: #{id.inspect}, Entity Class: #{entity_class.name}, Current Position #{current_position.inspect})" }
       logger.trace(tags: [:data, :entity]) { entity.pretty_inspect }
 
       stream_name = self.stream_name(id)
 
-      next_position = next_position(current_position)
+      start_position = next_position(current_position)
 
       project = projection_class.build(entity)
 
-      # returns nil if nothing read
-      # keep current position
-
-      # return current position if nothing projected
-
       logger.trace { "Reading (Stream Name: #{stream_name}, Position: #{current_position}" }
-      EventSource::Postgres::Read.(stream_name, position: next_position, session: session) do |event_data|
+      EventSource::Postgres::Read.(stream_name, position: start_position, session: session) do |event_data|
         project.(event_data)
         current_position = event_data.position
       end
