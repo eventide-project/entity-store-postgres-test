@@ -1,8 +1,8 @@
-require_relative 'bench_init'
+require_relative '../automated_init'
 
 context "New Entity" do
-  context "Probe Action" do
-    store = EventStore::EntityStore::Controls::Store::Example.new
+  context "Probe" do
+    store = Controls::EntityStore.example
 
     probed_entity = nil
     store.new_entity_probe = proc { |entity| probed_entity = entity }
