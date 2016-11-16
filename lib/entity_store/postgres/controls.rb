@@ -1,5 +1,6 @@
 require 'entity_store/controls'
 
+require 'entity_store/postgres/controls/id'
 require 'entity_store/postgres/controls/stream_name'
 require 'entity_store/postgres/controls/version'
 require 'entity_store/postgres/controls/message'
