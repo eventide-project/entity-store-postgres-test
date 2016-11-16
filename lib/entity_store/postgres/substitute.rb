@@ -1,5 +1,5 @@
 module EntityStore
-  class Substitute
+  class Subst #itute
     include EntityStore::Postgres
 
     def self.build

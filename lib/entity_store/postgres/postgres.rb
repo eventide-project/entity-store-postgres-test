@@ -5,7 +5,7 @@ module EntityStore
         include Log::Dependency
         include Messaging::StreamName
 
-        substitute_class = Class.new(Substitute)
+        substitute_class = Class.new(Subst)
 
         substitute_class.send :define_method, :entity_class do
           cls.entity_class
