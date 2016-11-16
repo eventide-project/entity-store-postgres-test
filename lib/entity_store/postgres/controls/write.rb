@@ -2,8 +2,8 @@ module EntityStore
   module Postgres
     module Controls
       module Write
-        def self.batch
-          stream_name = Controls::StreamName.example
+        def self.batch(category: nil)
+          stream_name = Controls::StreamName.example(category: category)
 
           writer = ::Messaging::Postgres::Write.build
 
