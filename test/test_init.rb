@@ -11,4 +11,4 @@ require 'pp'
 require 'securerandom'
 
 require 'entity_store/postgres/controls'
-include EntityStore::Postgres
+Controls = EntityStore::Postgres::Controls

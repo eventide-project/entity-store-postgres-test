@@ -133,10 +133,11 @@ module EntityStore
     end
 
     def new_entity
-      entity = if entity_class.respond_to? :build
-        entity_class.build
+      entity = nil
+      if entity_class.respond_to? :build
+        entity = entity_class.build
       else
-        entity_class.new
+        entity = entity_class.new
       end
 
       unless new_entity_probe.nil?
