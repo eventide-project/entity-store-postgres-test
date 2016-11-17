@@ -2,41 +2,10 @@ module EntityStore
   module Postgres
     module Controls
       module EntityStore
-        def self.example(category: nil, entity_class: nil, projection_class: nil, snapshot_class: nil)
-          if category.nil? && entity_class.nil? && projection_class.nil? && snapshot_class.nil?
-            store_class = Example
-          else
-            store_class = example_class category: category, entity_class: entity_class, projection_class: projection_class, snapshot_class: snapshot_class
-          end
-
-          instance = store_class.build
-          instance
+        def self.example(category: nil, entity_class: nil, projection_class: nil, snapshot_class: nil, snapshot_interval: nil)
+          reader_class = EventSource::Postgres::Read
+          ::EntityStore::Controls::EntityStore.example(category: category, entity_class: entity_class, projection_class: projection_class, reader_class: reader_class, snapshot_class: snapshot_class, snapshot_interval: snapshot_interval)
         end
-
-        def self.example_class(category: nil, entity_class: nil, projection_class: nil, snapshot_class: nil)
-          category ||= EntityStore::Category.example
-          entity_class ||= Controls::Entity::Example
-          projection_class ||= Controls::Projection::Example
-
-          Class.new do
-            include ::EntityStore
-
-            category category
-            entity entity_class
-            # reader EventSource::Postgres::Read
-            projection projection_class
-
-            snapshot snapshot_class unless snapshot_class.nil?
-          end
-        end
-
-        module Category
-          def self.example
-            :some_category
-          end
-        end
-
-        Example = self.example_class
       end
     end
   end
