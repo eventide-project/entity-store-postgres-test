@@ -19,7 +19,7 @@ module EntityStore
           projection_class ||= Controls::Projection::Example
 
           Class.new do
-            include ::EntityStore::Postgres
+            include ::EntityStore
 
             category category
             entity entity_class
