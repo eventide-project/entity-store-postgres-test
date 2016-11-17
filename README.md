@@ -1,6 +1,6 @@
 # entity_store-postgres
 
-Store of entities that are projected from streams
+Exercise of store of entities that are projected from streams stored in Postgres
 
 ## License
 

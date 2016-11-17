@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'entity_store-postgres'
-  s.version = '0.0.0.0'
-  s.summary = 'Store of entities that are projected from streams stored in Postgres'
+  s.version = '0'
+  s.summary = 'Exercise of store of entities that are projected from streams stored in Postgres'
   s.description = ' '
 
   s.authors = ['The Eventide Project']
