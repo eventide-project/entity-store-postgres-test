@@ -1,8 +1,8 @@
 require_relative '../automated_init'
 
 context "Fetch" do
-  context "Fetch entity from store for a stream that exists" do
-    stream_name = Controls::Write.batch(category: 'testFetch')
+  context "Entity" do
+    stream_name = Controls::Write.batch
 
     id = Messaging::StreamName.get_id stream_name
     category_name = Messaging::StreamName.get_category stream_name

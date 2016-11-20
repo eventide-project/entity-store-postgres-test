@@ -2,7 +2,7 @@ require_relative '../automated_init'
 
 context "Get" do
   context "Entity" do
-    stream_name = Controls::Write.batch(category: 'testEntityStoreGet')
+    stream_name = Controls::Write.batch
 
     id = Messaging::StreamName.get_id stream_name
     category_name = Messaging::StreamName.get_category stream_name
