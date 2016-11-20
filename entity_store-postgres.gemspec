@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'entity_store-postgres'
-  s.version = '0'
+  s.version = '0' # Test library. Do not publish.
   s.summary = 'Exercise of store of entities that are projected from streams stored in Postgres'
   s.description = ' '
 
