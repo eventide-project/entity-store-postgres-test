@@ -7,7 +7,8 @@ module EntityStore
 
           writer = ::Messaging::Postgres::Write.build
 
-          batch = [Message.first, Message.second]
+          # batch = [Message.first, Message.second]
+          batch = Batch.example
 
           writer.write(batch, stream_name)
 
