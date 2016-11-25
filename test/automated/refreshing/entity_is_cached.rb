@@ -14,8 +14,8 @@ context "Refreshing" do
 
     entity = store.get(id)
 
-    test "Second event is projected" do
-      assert entity.sum == Controls::Entity::Current.sum
+    test "Unprojected events are projected" do
+      assert(entity.sum == Controls::Entity::Current.sum)
     end
 
     context "Cache update" do
