@@ -5,11 +5,11 @@ module EntityStore
         def self.batch(category: nil)
           stream_name = Controls::StreamName.example(category: category)
 
-          writer = ::Messaging::Postgres::Write.build
+          write = ::Messaging::Postgres::Write.build
 
           batch = Batch.example
 
-          writer.write(batch, stream_name)
+          write.(batch, stream_name)
 
           stream_name
         end
