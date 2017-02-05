@@ -4,8 +4,8 @@ context "Fetch" do
   context "Entity" do
     stream_name = Controls::Write.batch
 
-    id = Messaging::StreamName.get_id stream_name
-    category_name = Messaging::StreamName.get_category stream_name
+    id = stream_name.partition('-').last
+    category_name = stream_name.split('-').first
 
     store = Controls::EntityStore.example(category: category_name)
 
