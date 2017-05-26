@@ -4,8 +4,8 @@ context "Fetch" do
   context "Includes" do
     stream_name = Controls::Write.batch(category: 'testFetchWithIncludes')
 
-    id = Messaging::Postgres::StreamName.get_id stream_name
-    category_name = Messaging::Postgres::StreamName.get_category stream_name
+    id = Messaging::StreamName.get_id stream_name
+    category_name = Messaging::StreamName.get_category stream_name
 
     store = Controls::EntityStore.example(category: category_name)
 

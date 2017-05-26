@@ -4,8 +4,8 @@ iterations = ENV.fetch('ITERATIONS') { '10' }.to_i
 
 stream_name = Controls::Write.batch(category: 'testFetch')
 
-id = Messaging::Postgres::StreamName.get_id stream_name
-category_name = Messaging::Postgres::StreamName.get_category stream_name
+id = Messaging::StreamName.get_id stream_name
+category_name = Messaging::StreamName.get_category stream_name
 
 store = Controls::EntityStore.example(category: category_name)
 

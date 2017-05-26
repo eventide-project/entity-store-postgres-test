@@ -4,8 +4,8 @@ context "Refreshing" do
   context "Entity is Cached" do
     stream_name = Controls::Write.batch(category: 'testRefreshingEntityCached')
 
-    id = Messaging::Postgres::StreamName.get_id stream_name
-    category_name = Messaging::Postgres::StreamName.get_category stream_name
+    id = Messaging::StreamName.get_id stream_name
+    category_name = Messaging::StreamName.get_category stream_name
 
     store = Controls::EntityStore.example(category: category_name)
     SubstAttr::Substitute.(:cache, store)
