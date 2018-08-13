@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
 
-gemspec
+gem 'evt-entity_store'
+gem 'evt-messaging-postgres'
+
+gem 'test_bench'
