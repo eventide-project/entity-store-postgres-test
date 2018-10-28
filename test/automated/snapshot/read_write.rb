@@ -20,14 +20,10 @@ context "Snapshot" do
     snapshot_stream_name = "example:snapshot-#{id}"
 
     messages = MessageStore::Postgres::Get.(snapshot_stream_name)
+pp messages
 
     test "Two snapshot messages are written" do
       assert(messages.count == 2)
-    end
-
-    context "Snapshot" do
-      snapshot_message = messages.first
-pp snapshot_message
     end
   end
 end
