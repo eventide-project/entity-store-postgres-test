@@ -2,12 +2,16 @@ module EntityStore
   module Postgres
     module Controls
       module Write
-        def self.batch(instances=nil, category: nil)
-          stream_name = Controls::StreamName.example(category: category)
+        def self.batch(inst=nil, instances: nil, category: nil, id: nil, batch: nil)
+          instances ||= inst
+          instances ||= 2
+
+          id ||= Controls::ID::Random.example
+
+          stream_name = Controls::StreamName.example(category: category, id: id)
+          batch ||= Batch.example(instances)
 
           write = ::Messaging::Postgres::Write.build
-
-          batch = Batch.example(instances)
 
           write.(batch, stream_name)
 

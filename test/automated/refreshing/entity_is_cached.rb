@@ -10,7 +10,12 @@ context "Refreshing" do
     store = Controls::EntityStore.example(category: category_name)
     SubstAttr::Substitute.(:cache, store)
 
-    Controls::Entity::Cached.add(id, store)
+    cached_entity, cached_version = Controls::Entity::Cached.add(id, store)
+
+## TODO How does this test and controls work?
+
+    # assert(cached_entity.sum == 1)
+    # assert(cached_version == 1)
 
     entity = store.get(id)
 
