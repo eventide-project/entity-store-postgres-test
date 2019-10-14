@@ -19,9 +19,7 @@ context "Refreshing" do
     end
 
     test "Entity is not cached" do
-      refute store.cache do
-        put?
-      end
+      refute store.cache.put?
     end
   end
 end

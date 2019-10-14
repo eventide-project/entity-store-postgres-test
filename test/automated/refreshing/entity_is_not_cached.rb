@@ -22,32 +22,31 @@ context "Refreshing" do
       test "Entity" do
         control_entity = Controls::Entity::Current.example
 
-        assert store.cache do
-          put? do |record|
-            record.id == control_id && record.entity == control_entity
-          end
+        put_record = store.cache.put? do |record|
+          record.id == control_id && record.entity == control_entity
         end
+
+        assert(put_record)
       end
 
       test "Version is refreshed" do
         control_version = Controls::Version::Current.example
 
-        assert store.cache do
-          put? do |record|
-            record.id == control_id && record.version == control_version
-          end
+        put_record = store.cache.put? do |record|
+          record.id == control_id && record.version == control_version
         end
+
+        assert(put_record)
       end
 
       test "Persisted version is not set" do
         control_persisted_version = Controls::Version::NotCached.example
 
-        assert store.cache do
-          put? do |record|
-            record.id == control_id &&
-              record.persisted_version == control_persisted_version
-          end
+        put_record = store.cache.put? do |record|
+          record.id == control_id && record.persisted_version == control_persisted_version
         end
+
+        assert(put_record)
       end
     end
   end
