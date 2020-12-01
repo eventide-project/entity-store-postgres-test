@@ -5,6 +5,7 @@ context "Snapshot" do
     snapshot_class = EntitySnapshot::Postgres
 
     category = 'example'
+    specifier = 'SomeSpecifier'
     id = Controls::ID::Random.example
 
     batch = Controls::Batch.example
@@ -16,8 +17,9 @@ context "Snapshot" do
       version: 0
     )
 
+    snapshot_category = "#{category}#{specifier}"
     snapshot_stream_name = Controls::Snapshot::Write.(
-      category: category,
+      category: snapshot_category,
       id: id,
       message_data: snapshot_record
     )
